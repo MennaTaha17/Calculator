@@ -2,9 +2,18 @@ import 'package:calculator_app/themes/app_colors.dart';
 import 'package:calculator_app/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-class CalculatorScreen extends StatelessWidget {
+class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
 
+  @override
+  State<CalculatorScreen> createState() => _CalculatorScreenState();
+}
+
+class _CalculatorScreenState extends State<CalculatorScreen> {
+  String lhs = '';
+  String rhs = '';
+  String operator = '';
+  String input = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +27,7 @@ class CalculatorScreen extends StatelessWidget {
                 alignment: Alignment(1, 0),
                 width: double.infinity,
                 child: Text(
-                  "15413",
+                  input,
                   style: TextStyle(fontSize: 50, color: AppColors.whiteColor),
                 ),
               ),
@@ -49,9 +58,9 @@ class CalculatorScreen extends StatelessWidget {
                                         textColor: AppColors.whiteColor,
                                         fontSize: 20,
                                       ),
-                                      CustomButton(text: "7"),
-                                      CustomButton(text: "4"),
-                                      CustomButton(text: "1"),
+                                      CustomButton(text: "7",onpressed: onDigitButtonClicked,),
+                                      CustomButton(text: "4",onpressed: onDigitButtonClicked,),
+                                      CustomButton(text: "1",onpressed: onDigitButtonClicked,),
                                     ],
                                   ),
                                 ),
@@ -68,9 +77,9 @@ class CalculatorScreen extends StatelessWidget {
                                         buttonColor: AppColors.lightGrayColor,
                                         textColor: AppColors.whiteColor,
                                       ),
-                                      CustomButton(text: "8"),
-                                      CustomButton(text: "5"),
-                                      CustomButton(text: "2"),
+                                      CustomButton(text: "8",onpressed: onDigitButtonClicked,),
+                                      CustomButton(text: "5",onpressed: onDigitButtonClicked,),
+                                      CustomButton(text: "2",onpressed: onDigitButtonClicked,),
                                     ],
                                   ),
                                 ),
@@ -84,9 +93,9 @@ class CalculatorScreen extends StatelessWidget {
                                         buttonColor: AppColors.darkBlueColor,
                                         textColor: AppColors.whiteColor,
                                       ),
-                                      CustomButton(text: "9"),
-                                      CustomButton(text: "6"),
-                                      CustomButton(text: "3"),
+                                      CustomButton(text: "9",onpressed: onDigitButtonClicked,),
+                                      CustomButton(text: "6",onpressed: onDigitButtonClicked,),
+                                      CustomButton(text: "3",onpressed: onDigitButtonClicked,),
                                     ],
                                   ),
                                 ),
@@ -98,8 +107,8 @@ class CalculatorScreen extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
-                                CustomButton(flex: 2, text: "0"),
-                                CustomButton(flex: 1, text: "."),
+                                CustomButton(flex: 2, text: "0",onpressed: onDigitButtonClicked,),
+                                CustomButton(flex: 1, text: ".",onpressed: onDigitButtonClicked,),
                               ],
                             ),
                           ),
@@ -146,5 +155,9 @@ class CalculatorScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+  onDigitButtonClicked(String digit){
+    input += digit;
+    setState(() {});
   }
 }
