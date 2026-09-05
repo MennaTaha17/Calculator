@@ -10,14 +10,15 @@ class CustomButton extends StatelessWidget {
     this.textColor,
     this.fontSize,
     this.icon,
+    this.onpressed
   });
 
-  int flex;
-  Color? buttonColor, textColor;
-  String? text;
-  double? fontSize;
-  Widget? icon;
-
+final int flex;
+final Color? buttonColor, textColor;
+final String? text;
+final double? fontSize;
+final Widget? icon;
+final void Function(String)? onpressed;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -25,7 +26,7 @@ class CustomButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: FilledButton(
-          onPressed: () {},
+          onPressed: () => onpressed!(text??""),
           style: FilledButton.styleFrom(
             backgroundColor: buttonColor ?? AppColors.grayColor,
             shape: RoundedRectangleBorder(
